@@ -1,5 +1,5 @@
 '''
-Character Object
+Character - A class that represents a character in the Lord of the Mysteries
 '''
 
 from api import objectStructures
