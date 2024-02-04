@@ -1,6 +1,6 @@
 # Mystic ✨
 
-An API to access all the major details of any charcter from the well renouned novel, `The Lord of the Mystries`. <br>
+An API to access all the major details of any charcter from the well renouned novel, `The Lord of the Mysteries`. <br>
 The API extracts data from the website "https://lordofthemysteries.fandom.com/wiki/"
 > The API is under developement. Some elements may contain bugs, more features upcoming.
 
