@@ -62,6 +62,8 @@ class Character(objectStructures.CharacterStructure):
         self.affliation = self.get_affliation()
         self.occupation = self.get_occupation()
         self.religion = self.get_religion()
+        self.residence = self.get_residence()
+        self.origin = self.get_origin()
 
     def get_name(self) -> str:
         """
@@ -596,3 +598,55 @@ class Character(objectStructures.CharacterStructure):
             religions.append(text)
 
         return religions
+
+    def get_origin(self) -> list[str]:
+            
+            '''Returns the origin of the character.'''
+            
+            origins = []
+            head = self.parsed.find("h3" , string = 'Origin')
+            
+            try:
+                head.parent
+            except AttributeError:
+                return [None]
+            
+            lists = head.parent.find_all("li")
+            
+            if len(lists) == 0:
+                return head.parent.find("div").text
+            
+            for li in lists:
+                try:
+                    text = li.text[:li.text.index("[")]
+                except ValueError:
+                    text = li.text
+                origins.append(text)
+            
+            return origins
+    
+    def get_residence(self) -> list[str]:
+        
+        '''Returns the Residence of the character.'''
+        
+        residences = []
+        head = self.parsed.find("h3" , string = 'Residence')
+        
+        try:
+            head.parent
+        except AttributeError:
+            return [None]
+        
+        lists = head.parent.find_all("li")
+        
+        if len(lists) == 0:
+            return head.parent.find("div").text
+        
+        for li in lists:
+            try:
+                text = li.text[:li.text.index("[")]
+            except ValueError:
+                text = li.text
+            residences.append(text)
+        
+        return residences
