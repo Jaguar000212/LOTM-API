@@ -64,6 +64,8 @@ class Character(objectStructures.CharacterStructure):
         self.religion = self.get_religion()
         self.residence = self.get_residence()
         self.origin = self.get_origin()
+        self.intro = self.get_intro()
+        self.honorific_name = self.get_honorific_name()
 
     def get_name(self) -> str:
         """
@@ -601,7 +603,17 @@ class Character(objectStructures.CharacterStructure):
 
     def get_origin(self) -> list[str]:
             
-            '''Returns the origin of the character.'''
+            """
+            Retrieves the origin of the Character.
+
+            Returns:
+
+                A list of strings representing the origin of the character.
+                If no origin is found, returns None.
+
+            """
+            
+           
             
             origins = []
             head = self.parsed.find("h3" , string = 'Origin')
@@ -627,7 +639,17 @@ class Character(objectStructures.CharacterStructure):
     
     def get_residence(self) -> list[str]:
         
-        '''Returns the Residence of the character.'''
+        """
+            Retrieves the residence of the Character.
+
+            Returns:
+
+                A list of strings representing the Residences of the character.
+                If no residence is found, returns None.
+                
+        """
+        
+        
         
         residences = []
         head = self.parsed.find("h3" , string = 'Residence')
@@ -650,3 +672,35 @@ class Character(objectStructures.CharacterStructure):
             residences.append(text)
         
         return residences
+    
+    def get_intro(self) -> list[str]:
+
+        """
+            Retrieves the intro of the Character.
+
+            Returns:
+
+                A list of strings representing the intro of the character.
+                If no intro is found, returns None.
+                
+        """
+        
+        intros = self.parsed.find_all("p")[7:12]  
+        intro_texts = [p.text.strip() for p in intros]  
+
+        return intro_texts
+    
+    def get_honorific_name(self) -> list[str]:
+        
+        """
+        Retrieves the honorific name of the character.
+        
+        Returns:
+            A list of strings representing the honorific name of the character.
+        
+        """
+        
+        
+        honorific = self.parsed.find_all("div" , class_ = "poem")[1:2]
+        honorific_text = [p.text.strip() for p in honorific]  
+        return honorific_text
