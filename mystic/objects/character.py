@@ -699,18 +699,20 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the honorific name of the character.
         
         """
+
         honorific = self.parsed.find_all("div" , class_ = "poem")
-        if honorific[1:2] == []:
-            honorific = honorific[0:1]
-            honorific_text = [p.text.strip() for p in honorific]
-            honorific_text = honorific_text[0].split('"')
-            honorific_text.remove('Simplified Chinese:\xa0上帝、创造者、造物主、全知全能者、星界之主')
+        if honorific[1:2] == []:  #fixes exceptions to the assumed position of honorific names in webpages
+            honorific_text = [p.text.strip() for p in honorific[0:1]
             
 
         else:
-            honorific_text = [p.text.strip() for p in honorific[1:2]]               
+            honorific_text = [p.text.strip() for p in honorific[1:2]]       
+
+        honorific_text = honorific_text[0].split('"') #splits the list at "
+        honorific_text.remove('Simplified Chinese:\xa0上帝、创造者、造物主、全知全能者、星界之主') 
+        # removes the popular pop up in honorific names
 
         return honorific_text
-        
+
         
        
