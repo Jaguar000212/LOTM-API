@@ -1,6 +1,4 @@
-"""
-Structure for Characters class of the API.
-"""
+"""Structure for Characters class of the API."""
 
 import requests
 import bs4
@@ -10,9 +8,7 @@ WEB_URL = "https://lordofthemysteries.fandom.com/wiki/"
 
 
 class CharacterStructure:
-    """
-    Represents a character in the Lord of the Mysteries universe.
-    """
+    """Represents a character in the Lord of the Mysteries universe."""
 
     def __init__(self, name: str):
         """
