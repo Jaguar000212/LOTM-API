@@ -24,7 +24,6 @@ class CharacterStructure:
         Raises:
         - NotFoundError: If the character is not found on the website.
         """
-
         self.url_name = helpers.misc.format_name(name)
         self.url = WEB_URL + self.url_name
         self.response = requests.get(self.url)
@@ -41,7 +40,6 @@ class CharacterStructure:
         Returns:
         - str: The name of the character.
         """
-
         pass
 
     def get_data(self) -> dict:
@@ -51,7 +49,6 @@ class CharacterStructure:
         Returns:
         - dict: The data of the character.
         """
-
         data = self.__dict__
         data.pop("response")
         data.pop("parsed")
@@ -66,7 +63,6 @@ class CharacterStructure:
         Returns:
         - str: The string representation of the character.
         """
-
         return self.name
 
     def __repr__(self) -> str:
@@ -76,7 +72,6 @@ class CharacterStructure:
         Returns:
         - str: The string representation of the character.
         """
-
         return self.name
 
     def __getitem__(self, key):
@@ -89,7 +84,6 @@ class CharacterStructure:
         Returns:
         - The value associated with the given key.
         """
-
         return self.__dict__[key]
 
     def __iter__(self):
@@ -99,6 +93,5 @@ class CharacterStructure:
         Yields:
         - Tuple[str, Any]: A tuple containing the attribute name and its value.
         """
-
         for key, value in self.__dict__.items():
             yield key, value
