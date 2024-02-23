@@ -17,7 +17,6 @@ def format_name(text):
     Returns:
     str: The formatted string with capitalized words (excluding prepositions and conjunctions) joined by underscores.
     """
-    
     # POS tagging the words in the input string
     tagged_words = pos_tag(text.split())
 
