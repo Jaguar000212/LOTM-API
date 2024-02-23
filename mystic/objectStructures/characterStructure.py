@@ -1,6 +1,6 @@
-'''
+"""
 Structure for Characters class of the API.
-'''
+"""
 
 import requests
 import bs4

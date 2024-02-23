@@ -6,7 +6,6 @@ from nltk import pos_tag
 
 
 def format_name(text):
-    
     """
     This function takes a string as input, splits it into words, and capitalizes each word that is not a preposition or conjunction.
     It then joins the words together with underscores and returns the result.
@@ -17,7 +16,7 @@ def format_name(text):
     Returns:
     str: The formatted string with capitalized words (excluding prepositions and conjunctions) joined by underscores.
     """
-    
+
     # POS tagging the words in the input string
     tagged_words = pos_tag(text.split())
 
