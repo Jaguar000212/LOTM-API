@@ -38,7 +38,6 @@ class Character(objectStructures.CharacterStructure):
         Parameters:
         name (str): The name of the character.
         """
-
         super().__init__(name)
 
         self.chinese_name = self.get_chinese_name()
@@ -72,7 +71,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
         str: The name of the character.
         """
-
         return self.parsed.find("h2", class_="pi-title").text
 
     def get_chinese_name(self) -> list[tuple]:
@@ -82,7 +80,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
         list[tuple]: The Chinese names of the character.
         """
-
         names = []
         head = self.parsed.find("h3", string="Chinese")
         div = head.parent.find("div")
@@ -107,7 +104,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             str: The birth information of the character, or None if not found.
         """
-
         head = self.parsed.find("h3", string="Birth")
         try:
             return head.parent.find("div").text
@@ -121,7 +117,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             str: The gender of the character, or None if not found.
         """
-
         head = self.parsed.find("h3", string="Gender")
         try:
             return head.parent.find("a").text
@@ -135,7 +130,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list: A list of species of the character.
         """
-
         species = []
         head = self.parsed.find("h3", string="Species")
         try:
@@ -163,7 +157,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of heights, where each height is a string.
         """
-
         heights = []
         head = self.parsed.find("h3", string="Height")
         try:
@@ -192,7 +185,6 @@ class Character(objectStructures.CharacterStructure):
             list: A list of eye color(s) of the character.
                   If the eye color is not found, returns None.
         """
-
         eyes = []
         head = self.parsed.find("h3", string="Eye")
         try:
@@ -221,7 +213,6 @@ class Character(objectStructures.CharacterStructure):
             list: A list of hair color(s) of the character.
                   If no hair color is found, returns None.
         """
-
         hairs = []
         head = self.parsed.find("h3", string="Hair")
         try:
@@ -250,7 +241,6 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the aliases of the character.
             If no aliases are found, returns None.
         """
-
         aliases = []
         head = self.parsed.find("h3", string="Aliases")
 
@@ -280,7 +270,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             A list of strings representing the titles.
         """
-
         titles = []
         head = self.parsed.find("h3", string="Titles")
 
@@ -318,7 +307,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of pathway names.
         """
-
         pathways = []
         head = self.parsed.find("h3", string="Pathway(s)")
 
@@ -347,7 +335,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: The list of authorities.
         """
-
         authorities = []
         head = self.parsed.find("h3", string="Authorities")
 
@@ -378,7 +365,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             A list of strings representing the relatives of the character.
         """
-
         relatives = []
         head = self.parsed.find("h3", string="Relative(s)")
 
@@ -409,7 +395,6 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the names of the masters.
             If no masters are found, returns None.
         """
-
         masters = []
         head = self.parsed.find("h3", string="Master(s)")
 
@@ -439,7 +424,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             A list of strings representing the enemies.
         """
-
         enemies = []
         head = self.parsed.find("h3", string="Enemie(s)")
 
@@ -469,7 +453,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of allies.
         """
-
         allies = []
         head = self.parsed.find("h3", string="Allies")
 
@@ -500,7 +483,6 @@ class Character(objectStructures.CharacterStructure):
             str: The URL of the character's image.
                 If no image exists, returns "No Image exists yet."
         """
-
         try:
             figure_header = self.parsed.find("figure", class_="pi-item pi-image")
             return figure_header.find("img")["src"]
@@ -514,7 +496,6 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of affiliations.
         """
-
         affliations = []
         head = self.parsed.find("h3", string="Affiliation(s)")
 
@@ -545,7 +526,6 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the occupation(s) of the character.
             If no occupation is found, returns None.
         """
-
         occupations = []
         head = self.parsed.find("h3", string="Occupation(s)")
 
@@ -576,7 +556,6 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the religion(s) of the character.
             If no religion is found, returns None.
         """
-
         religions = []
         head = self.parsed.find("h3", string="Religion(s)")
 
@@ -609,7 +588,6 @@ class Character(objectStructures.CharacterStructure):
             If no origin is found, returns None.
 
         """
-
         origins = []
         head = self.parsed.find("h3", string="Origin")
 
@@ -642,7 +620,6 @@ class Character(objectStructures.CharacterStructure):
             If no residence is found, returns None.
 
         """
-
         residences = []
         head = self.parsed.find("h3", string="Residence")
 
@@ -675,7 +652,6 @@ class Character(objectStructures.CharacterStructure):
             If no intro is found, returns None.
 
         """
-
         intros = self.parsed.find_all("p")[7:12]
         intro_texts = [p.text.strip() for p in intros]
 
@@ -689,7 +665,6 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the honorific name of the character.
 
         """
-
         honorific = self.parsed.find_all("div", class_="poem")
         if (
             honorific[1:2] == []
