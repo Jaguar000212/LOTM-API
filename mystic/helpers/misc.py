@@ -1,6 +1,4 @@
-"""
-Helper functions for miscellaneous tasks
-"""
+"""Helper functions for miscellaneous tasks"""
 
 from nltk import pos_tag
 

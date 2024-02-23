@@ -1,6 +1,4 @@
-"""
-This module contains custom exceptions for the API
-"""
+"""This module contains custom exceptions for the API"""
 
 
 class NotFoundError(Exception):
