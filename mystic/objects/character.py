@@ -1,6 +1,4 @@
-"""
-Character class that represents a character in the Lord of the Mysteries.
-"""
+"""Character class that represents a character in the Lord of the Mysteries."""
 
 from mystic import objectStructures
 
