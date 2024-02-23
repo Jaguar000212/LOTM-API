@@ -702,7 +702,7 @@ class Character(objectStructures.CharacterStructure):
 
         honorific = self.parsed.find_all("div" , class_ = "poem")
         if honorific[1:2] == []:  #fixes exceptions to the assumed position of honorific names in webpages
-            honorific_text = [p.text.strip() for p in honorific[0:1]
+            honorific_text = [p.text.strip() for p in honorific[0:1]]
             
 
         else:
