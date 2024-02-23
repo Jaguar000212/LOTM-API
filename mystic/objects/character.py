@@ -602,7 +602,7 @@ class Character(objectStructures.CharacterStructure):
         return religions
 
     def get_origin(self) -> list[str]:
-            
+
             """
             Retrieves the origin of the Character.
 
@@ -612,33 +612,33 @@ class Character(objectStructures.CharacterStructure):
                 If no origin is found, returns None.
 
             """
-            
-           
-            
+
+
+
             origins = []
             head = self.parsed.find("h3" , string = 'Origin')
-            
+
             try:
                 head.parent
             except AttributeError:
                 return [None]
-            
+
             lists = head.parent.find_all("li")
-            
+
             if len(lists) == 0:
                 return head.parent.find("div").text
-            
+
             for li in lists:
                 try:
                     text = li.text[:li.text.index("[")]
                 except ValueError:
                     text = li.text
                 origins.append(text)
-            
+
             return origins
-    
+
     def get_residence(self) -> list[str]:
-        
+
         """
             Retrieves the residence of the Character.
 
@@ -646,33 +646,33 @@ class Character(objectStructures.CharacterStructure):
 
                 A list of strings representing the Residences of the character.
                 If no residence is found, returns None.
-                
+
         """
-        
-        
-        
+
+
+
         residences = []
         head = self.parsed.find("h3" , string = 'Residence')
-        
+
         try:
             head.parent
         except AttributeError:
             return [None]
-        
+
         lists = head.parent.find_all("li")
-        
+
         if len(lists) == 0:
             return head.parent.find("div").text
-        
+
         for li in lists:
             try:
                 text = li.text[:li.text.index("[")]
             except ValueError:
                 text = li.text
             residences.append(text)
-        
+
         return residences
-    
+
     def get_intro(self) -> list[str]:
 
         """
@@ -682,28 +682,28 @@ class Character(objectStructures.CharacterStructure):
 
                 A list of strings representing the intro of the character.
                 If no intro is found, returns None.
-                
+
         """
-        
+
         intros = self.parsed.find_all("p")[7:12]  
         intro_texts = [p.text.strip() for p in intros]  
 
         return intro_texts
-    
+
     def get_honorific_name(self) -> list[str]:
-        
+
         """
         Retrieves the honorific name of the character.
-        
+
         Returns:
             A list of strings representing the honorific name of the character.
-        
+
         """
 
         honorific = self.parsed.find_all("div" , class_ = "poem")
         if honorific[1:2] == []:  #fixes exceptions to the assumed position of honorific names in webpages
             honorific_text = [p.text.strip() for p in honorific[0:1]]
-            
+
 
         else:
             honorific_text = [p.text.strip() for p in honorific[1:2]]       
@@ -714,5 +714,5 @@ class Character(objectStructures.CharacterStructure):
 
         return honorific_text
 
-        
-       
+
+
