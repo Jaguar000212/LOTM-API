@@ -685,17 +685,16 @@ class Character(objectStructures.CharacterStructure):
         # removes the popular pop up in honorific names
 
         return honorific_text
-    
+
     def get_symbol(self) -> str:
-        
-        '''Retrieves the symbol of the character.
-        
+        """Retrieves the symbol of the character.
+
         Returns:
             An image representing the symbol of mysticism of the character.
-        '''
+        """
         try:
-            symbol = self.parsed.find("h2" , string = "Mysticism")
-            symbols = symbol.parent.find("figure" , class_ = "pi-item pi-image")
+            symbol = self.parsed.find("h2", string="Mysticism")
+            symbols = symbol.parent.find("figure", class_="pi-item pi-image")
             symbols = symbols.find("img")["src"]
             return symbols
         except:
