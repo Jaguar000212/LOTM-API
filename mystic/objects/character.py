@@ -654,6 +654,11 @@ class Character(objectStructures.CharacterStructure):
 
         """
         intros = self.parsed.find_all("p")[7:12]
+        poem_divs = self.parsed.find_all("div", class_="poem")
+        poem_ps = [p for div in poem_divs for p in div.find_all("p")]
+
+        intros = [intro for intro in intros if intro not in poem_ps]
+
         intro_texts = [p.text.strip() for p in intros]
 
         return intro_texts
