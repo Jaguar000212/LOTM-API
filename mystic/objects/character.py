@@ -29,6 +29,11 @@ class Character(objectStructures.CharacterStructure):
     affliation: The affliation of the character.
     occupation: The occupation of the character.
     religion: The religion of the character.
+    residence: The residence of the character.
+    origin: The origin of the character.
+    intro: The introduction of the character.
+    honorific_name: The honorific name of the character.
+    symbol: The symbol of the character.
     """
 
     def __init__(self, name: str) -> None:
@@ -38,6 +43,7 @@ class Character(objectStructures.CharacterStructure):
         Parameters:
         name (str): The name of the character.
         """
+        
         super().__init__(name)
 
         self.chinese_name = self.get_chinese_name()
@@ -72,6 +78,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
         str: The name of the character.
         """
+
         return self.parsed.find("h2", class_="pi-title").text
 
     def get_chinese_name(self) -> list[tuple]:
@@ -81,6 +88,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
         list[tuple]: The Chinese names of the character.
         """
+
         names = []
         head = self.parsed.find("h3", string="Chinese")
         div = head.parent.find("div")
@@ -105,6 +113,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             str: The birth information of the character, or None if not found.
         """
+
         head = self.parsed.find("h3", string="Birth")
         try:
             return head.parent.find("div").text
@@ -118,6 +127,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             str: The gender of the character, or None if not found.
         """
+
         head = self.parsed.find("h3", string="Gender")
         try:
             return head.parent.find("a").text
@@ -131,6 +141,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list: A list of species of the character.
         """
+
         species = []
         head = self.parsed.find("h3", string="Species")
         try:
@@ -140,7 +151,7 @@ class Character(objectStructures.CharacterStructure):
                 try:
                     return data.text[: data.text.index("[")]
                 except ValueError:
-                    return data.text
+                    species.append(data.text)
             for child in data.findAll("li"):
                 try:
                     specie = child.text[: child.text.index("[")]
@@ -158,6 +169,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of heights, where each height is a string.
         """
+
         heights = []
         head = self.parsed.find("h3", string="Height")
         try:
@@ -167,7 +179,7 @@ class Character(objectStructures.CharacterStructure):
                 try:
                     return data.text[: data.text.index("[")]
                 except ValueError:
-                    return data.text
+                    heights.append(data.text)
             for child in data.findAll("li"):
                 try:
                     height = child.text[: child.text.index("[")]
@@ -186,6 +198,7 @@ class Character(objectStructures.CharacterStructure):
             list: A list of eye color(s) of the character.
                   If the eye color is not found, returns None.
         """
+
         eyes = []
         head = self.parsed.find("h3", string="Eye")
         try:
@@ -195,7 +208,7 @@ class Character(objectStructures.CharacterStructure):
                 try:
                     return data.text[: data.text.index("[")]
                 except ValueError:
-                    return data.text
+                    eyes.append(data.text)
             for child in data.findAll("li"):
                 try:
                     eye = child.text[: child.text.index("[")]
@@ -214,6 +227,7 @@ class Character(objectStructures.CharacterStructure):
             list: A list of hair color(s) of the character.
                   If no hair color is found, returns None.
         """
+
         hairs = []
         head = self.parsed.find("h3", string="Hair")
         try:
@@ -223,7 +237,7 @@ class Character(objectStructures.CharacterStructure):
                 try:
                     return data.text[: data.text.index("[")]
                 except ValueError:
-                    return data.text
+                    hairs.append(data.text)
             for child in data.findAll("li"):
                 try:
                     hair = child.text[: child.text.index("[")]
@@ -242,6 +256,7 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the aliases of the character.
             If no aliases are found, returns None.
         """
+
         aliases = []
         head = self.parsed.find("h3", string="Aliases")
 
@@ -253,7 +268,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            aliases.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -271,6 +286,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             A list of strings representing the titles.
         """
+
         titles = []
         head = self.parsed.find("h3", string="Titles")
 
@@ -281,7 +297,7 @@ class Character(objectStructures.CharacterStructure):
 
         lists = head.parent.find_all("li")
         if len(lists) == 0:
-            return head.parent.find("div")
+            titles.append(head.parent.find("div"))
 
         for li in lists:
             s_text = ""
@@ -308,6 +324,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of pathway names.
         """
+
         pathways = []
         head = self.parsed.find("h3", string="Pathway(s)")
 
@@ -336,6 +353,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: The list of authorities.
         """
+
         authorities = []
         head = self.parsed.find("h3", string="Authorities")
 
@@ -366,6 +384,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             A list of strings representing the relatives of the character.
         """
+
         relatives = []
         head = self.parsed.find("h3", string="Relative(s)")
 
@@ -377,7 +396,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            relatives.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -396,6 +415,7 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the names of the masters.
             If no masters are found, returns None.
         """
+
         masters = []
         head = self.parsed.find("h3", string="Master(s)")
 
@@ -407,7 +427,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            masters.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -425,6 +445,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             A list of strings representing the enemies.
         """
+
         enemies = []
         head = self.parsed.find("h3", string="Enemie(s)")
 
@@ -436,7 +457,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            enemies.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -454,6 +475,7 @@ class Character(objectStructures.CharacterStructure):
         Returns:
             list[str]: A list of allies.
         """
+
         allies = []
         head = self.parsed.find("h3", string="Allies")
 
@@ -484,6 +506,7 @@ class Character(objectStructures.CharacterStructure):
             str: The URL of the character's image.
                 If no image exists, returns "No Image exists yet."
         """
+
         try:
             figure_header = self.parsed.find("figure", class_="pi-item pi-image")
             return figure_header.find("img")["src"]
@@ -496,7 +519,8 @@ class Character(objectStructures.CharacterStructure):
 
         Returns:
             list[str]: A list of affiliations.
-        """
+        """ 
+
         affliations = []
         head = self.parsed.find("h3", string="Affiliation(s)")
 
@@ -508,7 +532,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            affliations.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -527,6 +551,7 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the occupation(s) of the character.
             If no occupation is found, returns None.
         """
+
         occupations = []
         head = self.parsed.find("h3", string="Occupation(s)")
 
@@ -538,7 +563,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            occupations.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -557,6 +582,7 @@ class Character(objectStructures.CharacterStructure):
             A list of strings representing the religion(s) of the character.
             If no religion is found, returns None.
         """
+
         religions = []
         head = self.parsed.find("h3", string="Religion(s)")
 
@@ -568,7 +594,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            religions.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -600,7 +626,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            origins.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -632,7 +658,7 @@ class Character(objectStructures.CharacterStructure):
         lists = head.parent.find_all("li")
 
         if len(lists) == 0:
-            return head.parent.find("div").text
+            residences.append(head.parent.find("div").text)
 
         for li in lists:
             try:
@@ -683,7 +709,6 @@ class Character(objectStructures.CharacterStructure):
             honorific_text = [p.text.strip() for p in honorific[0:1]]
 
         return honorific_text
-
     
     def get_symbol(self) -> str:
         
