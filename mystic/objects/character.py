@@ -674,9 +674,13 @@ class Character(objectStructures.CharacterStructure):
         honorific = self.parsed.find_all("div", class_="poem")
 
         for div in honorific:
-            for span in div.find_all("span", class_="refpopups-custom-content mobile-hidden", style="display:none"):
+            for span in div.find_all(
+                "span",
+                class_="refpopups-custom-content mobile-hidden",
+                style="display:none",
+            ):
                 span.decompose()
-       
+
         honorific_text = [p.text.strip() for p in honorific[1:2]]
 
         if honorific_text == []:
@@ -684,17 +688,15 @@ class Character(objectStructures.CharacterStructure):
 
         return honorific_text
 
-    
     def get_symbol(self) -> str:
-        
-        '''Retrieves the symbol of the character.
-        
+        """Retrieves the symbol of the character.
+
         Returns:
             An image representing the symbol of mysticism of the character.
-        '''
+        """
         try:
-            symbol = self.parsed.find("h2" , string = "Mysticism")
-            symbols = symbol.parent.find("figure" , class_ = "pi-item pi-image")
+            symbol = self.parsed.find("h2", string="Mysticism")
+            symbols = symbol.parent.find("figure", class_="pi-item pi-image")
             symbols = symbols.find("img")["src"]
             return symbols
         except:
