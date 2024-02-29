@@ -672,19 +672,18 @@ class Character(objectStructures.CharacterStructure):
 
         """
         honorific = self.parsed.find_all("div", class_="poem")
-        if (
-            honorific[1:2] == []
-        ):  # fixes exceptions to the assumed position of honorific names in webpages
+
+        for div in honorific:
+            for span in div.find_all("span", class_="refpopups-custom-content mobile-hidden", style="display:none"):
+                span.decompose()
+       
+        honorific_text = [p.text.strip() for p in honorific[1:2]]
+
+        if honorific_text == []:
             honorific_text = [p.text.strip() for p in honorific[0:1]]
 
-        else:
-            honorific_text = [p.text.strip() for p in honorific[1:2]]
-
-        honorific_text = honorific_text[0].split('"')  # splits the list at "
-        honorific_text.remove("Simplified Chinese:\xa0上帝、创造者、造物主、全知全能者、星界之主")
-        # removes the popular pop up in honorific names
-
         return honorific_text
+
     
     def get_symbol(self) -> str:
         
