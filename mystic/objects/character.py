@@ -43,7 +43,7 @@ class Character(objectStructures.CharacterStructure):
         Parameters:
         name (str): The name of the character.
         """
-        
+
         super().__init__(name)
 
         self.chinese_name = self.get_chinese_name()
@@ -519,7 +519,7 @@ class Character(objectStructures.CharacterStructure):
 
         Returns:
             list[str]: A list of affiliations.
-        """ 
+        """
 
         affliations = []
         head = self.parsed.find("h3", string="Affiliation(s)")
