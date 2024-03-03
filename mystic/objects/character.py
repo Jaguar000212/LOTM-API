@@ -712,7 +712,7 @@ class Character(objectStructures.CharacterStructure):
         if honorific_text == []:
             honorific_text = [p.text.strip() for p in honorific[0:1]]
 
-        return honorific_text
+        return ("\n").join(honorific_text)
 
     def get_symbol(self) -> str:
         """Retrieves the symbol of the character.
