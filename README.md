@@ -44,7 +44,8 @@ print(character.get_data())
 
 ### - 🟢 What more?
 We will be updating the API with more classes, bug fixes, efficiency and readability. We are working on the documentations as well. <br>
-Contributions are welcome!
+Contributions are welcome!  
+> Currently, the development has been halted, contributions are welcomed.
 
 ---
 
