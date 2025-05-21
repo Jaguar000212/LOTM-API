@@ -1,20 +1,20 @@
 # Mystic ✨
 
-An API to access all the major details of any charcter from the well renouned novel, `The Lord of the Mysteries`. <br>
+An API to access all the major details of any character from the well-renowned novel, `The Lord of the Mysteries`.  
 The API extracts data from the website "https://lordofthemysteries.fandom.com/wiki/"
-> The API is under developement. Some elements may contain bugs, more features upcoming.
+> The API is under development. Some elements may contain bugs, and more features are upcoming.
 
 ---
 
 ### - ⚒️ Requirements
 - `requests` for retrieving the webpage.
 - `BeautifulSoup` for HTML parsing and scraping.
-- `NLTK` for correct generation of the url.
+- `NLTK` for the correct generation of the URL.
 
 ---
 
 ### - 💻 Installation
-Simply clone the the repo, and use the `Character` class.
+Simply clone the repo and use the `Character` class.
 
 ```sh
 # Install the requirements
@@ -43,9 +43,9 @@ print(character.get_data())
 ---
 
 ### - 🟢 What more?
-We will be updating the API with more classes, bug fixes, efficiency and readability. We are working on the documentations as well. <br>
+We will be updating the API with more classes, bug fixes, efficiency, and readability. We are working on the documentation as well. <br>
 Contributions are welcome!  
-> Currently, the development has been halted, contributions are welcomed.
+> Currently, the development has been halted; contributions are welcome.
 
 ---
 
